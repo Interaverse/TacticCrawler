@@ -11,10 +11,13 @@ public class characterControl : MonoBehaviour
     float moveLimiter = 0.7f;
 
     public float runSpeed = 5f;
-
+    private Animator main_anim;
+    private SpriteRenderer sprite;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        main_anim = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -22,6 +25,33 @@ public class characterControl : MonoBehaviour
         // Gives a value between -1 and 1
         horizontal = Input.GetAxisRaw("Horizontal"); // -1 is left
         vertical = Input.GetAxisRaw("Vertical"); // -1 is down
+        if (horizontal < 0 ) //left
+        {
+            main_anim.SetTrigger("run side");
+            sprite.flipX = false;
+        }else if (horizontal > 0) //right
+        {
+            main_anim.SetTrigger("run side");
+            sprite.flipX = true;
+        }else if (vertical < 0) //down
+        {
+            main_anim.SetTrigger("run down");
+        }else if (vertical > 0) //up
+        {
+            main_anim.SetTrigger("run up");
+        }else
+        {
+            main_anim.ResetTrigger("run up");
+            main_anim.ResetTrigger("run down");
+            main_anim.ResetTrigger("run side");
+        }
+        if (body.velocity == new Vector2(0,0))//idle
+        {
+            main_anim.SetBool("idle",true);
+        }else
+        {
+            main_anim.SetBool("idle", false);
+        }
     }
 
     void FixedUpdate()
