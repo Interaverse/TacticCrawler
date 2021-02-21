@@ -27,7 +27,7 @@ public class StartGame : MonoBehaviour
         {
             Destroy(excess[i]);
         }
-        Instantiate(dungeon, new Vector3(connector.transform.position.x,connector.transform.position.y - 20,connector.transform.position.z), Quaternion.identity);
+        Instantiate(dungeon, new Vector3(connector.transform.position.x,connector.transform.position.y - 20,5), Quaternion.identity);
         Destroy(start_game);
     }
 }

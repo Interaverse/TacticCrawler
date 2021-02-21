@@ -9,7 +9,7 @@ public class dungeon1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame
@@ -17,7 +17,7 @@ public class dungeon1 : MonoBehaviour
     {
         if (count < max)
         {
-            transform.position = new Vector2(transform.position.x, transform.position.y + 0.05f);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 0.05f,5);
             count += 0.05f;
         }
 
