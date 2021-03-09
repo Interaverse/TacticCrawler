@@ -23,11 +23,16 @@ namespace Cainos.PixelArtTopDown_Basic
 
         private void Update()
         {
-            if (target == null) return;
+            if (GameObject.Find("EngageBattle"))
+            {
 
-            targetPos = target.position + offset;
-            transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+            } else if (target != null)
+            {
+                targetPos = target.position + offset;
+                transform.position = Vector3.Lerp(transform.position, targetPos, lerpSpeed * Time.deltaTime);
+            }
+
+
         }
-
     }
 }

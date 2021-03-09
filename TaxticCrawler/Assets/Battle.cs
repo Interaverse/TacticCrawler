@@ -2,28 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Battle : SubBattle
+public class Battle : MonoBehaviour
 {
-    SubBattle battle = new SubBattle();
+    private SubBattle mainBattle;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (battle.BattleMode == true)
+        if (GameObject.Find("EngageBattle"))
         {
-            BattleMode();
-            Debug.Log("battleMOde is now");
+            mainBattle = GameObject.Find("EngageBattle").GetComponent<SubBattle>();
+            if (mainBattle.BattleMode == true)
+            {
+                BattleMode();
+            }
         }
     }
     void BattleMode()
     {
+
         this.GetComponent<AudioSource>().Pause();
-        this.GetComponent<AudioSource>().clip = battle.attackClip;
+        this.GetComponent<AudioSource>().clip = mainBattle.attackClip;
         this.GetComponent<AudioSource>().Play();
     }
 }

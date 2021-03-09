@@ -22,6 +22,7 @@ public class StartGame : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
+        mainCharacter.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, mainCharacter.transform.position.z);
         mainCharacter.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
         Destroy(gate);
         GameObject[] excess = GameObject.FindGameObjectsWithTag("Excess");
